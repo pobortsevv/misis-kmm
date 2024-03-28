@@ -5,15 +5,20 @@ import 'package:misis/provider/provider.dart';
 import 'package:misis/router/login_router.dart';
 import 'package:misis/screens/named_screen.dart';
 import 'package:misis/screens/root/nav_bar.dart';
+import 'package:misis/screens/schedule/schedule_screen.dart';
+import 'package:misis/screens/schedule/schedule_view_model.dart';
 
 final class AppRouter {
   final ProfileManager _profileManager;
   final LoginRouter _loginRouter;
+  final AppProvider _provider;
+  late final ScheduleViewModel scheduleViewModel;
 
   AppRouter({
     required AppProvider provider,
     required ProfileManager profileManager
   }) : _profileManager = profileManager,
+   _provider = provider,
    _loginRouter = LoginRouter(provider: provider, profileManager: profileManager);
 
   GoRouter getRouter() {
@@ -33,8 +38,9 @@ final class AppRouter {
                     path: '/schedule',
                     builder: (BuildContext context, GoRouterState state) {
                       _clearContextIfNeeded(context);
+                      scheduleViewModel = ScheduleViewModel(provider:_provider);
 
-                      return const EmptyScreen(title: 'Расписание');
+                      return ScheduleScreen(vm: scheduleViewModel);
                     },
                     // routes: <RouteBase>[],
                     redirect: (context, state) async {

@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/cupertino.dart'; // По хорошему, viewModel файлы ничего не должны знать о Flutter
 import 'package:go_router/go_router.dart';
 import 'package:misis/models/domain/filial.dart';
 import 'package:misis/provider/provider.dart';
@@ -34,9 +34,7 @@ final class FilialsViewModel extends ListViewModel<Filial> {
 
   @override
   void searchListener(String text) {
-    final foundFilials = _allFilials
-        .where((item) => item.name.toLowerCase().contains(text.toLowerCase()))
-        .toList();
+    final foundFilials = _allFilials.where((item) => item.name.toLowerCase().contains(text.toLowerCase())).toList();
     notify(SearchEvent(foundData: foundFilials));
   }
 }

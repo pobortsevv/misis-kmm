@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class ThemeClass {
   static CupertinoTextThemeData lightThemeTextData = CupertinoTextThemeData(
-    primaryColor: FigmaColors.primary,
+    primaryColor: FigmaColors.texticonsPrimaruLight,
     textStyle: const FigmaTextStyles().body,
     navTitleTextStyle: const FigmaTextStyles().title,
     navLargeTitleTextStyle: const FigmaTextStyles().headline,
@@ -10,16 +10,17 @@ class ThemeClass {
   );
 
   static CupertinoTextThemeData darkThemeTextData = CupertinoTextThemeData(
-    primaryColor: FigmaColors.primary,
+    primaryColor: FigmaColors.texticonsPrimaruDark,
     textStyle: const FigmaTextStyles().darkBody,
     navTitleTextStyle: const FigmaTextStyles().darkTitle,
     navLargeTitleTextStyle: const FigmaTextStyles().darkHeadline,
     tabLabelTextStyle: const FigmaTextStyles().dartFootnote
   );
 
-  static CupertinoThemeData lightThemeData = const CupertinoThemeData(
+  static CupertinoThemeData lightThemeData = CupertinoThemeData(
     brightness: Brightness.light,
-    primaryColor: FigmaColors.primary,
+    textTheme: ThemeClass.lightThemeTextData,
+    primaryColor: FigmaColors.texticonsPrimaruLight,
     scaffoldBackgroundColor: FigmaColors.background1levelLight,
     barBackgroundColor: FigmaColors.background1levelLight,
     applyThemeToAll: true
@@ -28,7 +29,7 @@ class ThemeClass {
   static CupertinoThemeData darkThemeData = CupertinoThemeData(
     brightness: Brightness.dark,
     textTheme: ThemeClass.darkThemeTextData,
-    primaryColor: FigmaColors.primary,
+    primaryColor: FigmaColors.texticonsPrimaruDark,
     scaffoldBackgroundColor: FigmaColors.background1levelDark,
     barBackgroundColor: FigmaColors.background1levelDark,
     applyThemeToAll: true

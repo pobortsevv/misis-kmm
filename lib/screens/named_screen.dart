@@ -13,14 +13,7 @@ class EmptyScreen extends StatelessWidget {
           middle: Text(title),
           border: Border(bottom: BorderSide(color: CupertinoTheme.of(context).barBackgroundColor))
         ),
-        child: Center(child:
-          Column(
-            children: [
-              // ListTile(title: Text(profile.filial.toString())),
-              // ListTile(title: Text(profile.user.toString()))
-            ],
-          )
-        ),
+        child: Container()
     );
   }
 }

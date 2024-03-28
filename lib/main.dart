@@ -15,7 +15,7 @@ void main() async {
   // final filial = Filial(id: 880, name: "name", shortname: "shortname", code: "880");
   // final user = User(Status.teacher, "value");
   // profileManager.addProfile(Profile(filial: filial, user: user));
-  profileManager.removeProfile();
+  // profileManager.removeProfile();
   // final profile = await profileManager.getProfile();
 
   runApp(MyApp(profileManager: profileManager, provider: provider));

@@ -9,14 +9,9 @@ import 'package:misis/router/app_router.dart';
 void main() async {
   final ProfileManager profileManager = ProfileManagerImp();
   final AppProvider provider = AppProviderImp();
+
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  // final filial = Filial(id: 880, name: "name", shortname: "shortname", code: "880");
-  // final user = User(Status.teacher, "value");
-  // profileManager.addProfile(Profile(filial: filial, user: user));
-  // profileManager.removeProfile();
-  // final profile = await profileManager.getProfile();
 
   runApp(MyApp(profileManager: profileManager, provider: provider));
 }
@@ -34,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
+    profileManager.removeProfile();
 
     return CupertinoApp.router(
       theme: ThemeClass.lightThemeData,

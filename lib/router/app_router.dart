@@ -38,7 +38,7 @@ final class AppRouter {
                     path: '/schedule',
                     builder: (BuildContext context, GoRouterState state) {
                       _clearContextIfNeeded(context);
-                      scheduleViewModel = ScheduleViewModel(provider:_provider);
+                      scheduleViewModel = ScheduleViewModel(provider:_provider, profileManager: _profileManager);
 
                       return ScheduleScreen(vm: scheduleViewModel);
                     },

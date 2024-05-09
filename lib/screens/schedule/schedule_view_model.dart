@@ -8,10 +8,17 @@ import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/tools/date_time_extension.dart';
 
 final class ScheduleViewModel extends EventViewModel {
+  // Private properties
+
   final AppProvider _provider;
   final ProfileManager _profileManager;
   late final Profile _profile;
   late final Schedule _schedule;
+  String? _currentWeekType;
+
+  // Public propetries
+
+  String get currentWeekType => _currentWeekType ?? "";
 
   ScheduleViewModel({
     required AppProvider provider,
@@ -43,7 +50,12 @@ final class ScheduleViewModel extends EventViewModel {
   }
 
   Future<Schedule> _loadSchedule(Profile profile) async {
-    final weeks = _getWeeks();
+    final now = DateTime.now();
+    final currentWeekNumber = now.weekNumber;
+
+    final isEven = currentWeekNumber.isEven;
+
+    final weeks = _getWeeks(now, isEven);
     final id = profile.user.value.id;
     final status = profile.user.status;
 
@@ -51,6 +63,9 @@ final class ScheduleViewModel extends EventViewModel {
       _loadWeek(id, status, weeks.$1),
       _loadWeek(id, status, weeks.$2)
     ]);
+    // TODO: Сделать проверку на ошибку
+
+    _updateCurrentWeekType(isEven);
 
     return Schedule(upperWeek: results[0], bottomWeek: results[1]);
   }
@@ -61,18 +76,11 @@ final class ScheduleViewModel extends EventViewModel {
     return profile ?? (throw Exception('Failed to get Profile'));
   }
 
-  (DateTime upperWeek, DateTime bottomWeek) _getWeeks() {
-    final now = DateTime.now();
-    final currentWeekNumber = now.weekNumber;
-
-    final isEven = currentWeekNumber.isEven;
-    // final currentWeekStartDate = now.firstDayOfTheWeek;
-    // final currentWeekEndDate = now.lastDayOfTheWeek;
-
+  (DateTime upperWeek, DateTime bottomWeek) _getWeeks(DateTime now, bool isCurrentWeekEven) {
     final DateTime upperWeek;
     final DateTime bottomWeek;
 
-    if (isEven) {
+    if (isCurrentWeekEven) {
       upperWeek = now;
       bottomWeek = now.nextWeek;
     }  else {
@@ -81,5 +89,9 @@ final class ScheduleViewModel extends EventViewModel {
     }
 
     return (upperWeek, bottomWeek);
+  }
+
+  void _updateCurrentWeekType(bool isCurrentWeekEven) {
+    _currentWeekType = isCurrentWeekEven ? "Ceйчас верхняя неделя" : "Сейчас нижняя неделя";
   }
 }

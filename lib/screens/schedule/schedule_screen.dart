@@ -30,7 +30,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text('Сделать динамический title', style: CupertinoTheme.of(context).textTheme.textStyle),
+        middle: Text(widget.vm.currentWeekType, style: CupertinoTheme.of(context).textTheme.textStyle),
         border: Border(bottom: BorderSide(color: CupertinoTheme.of(context).barBackgroundColor))
       ),
       child: SafeArea(child:

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    profileManager.removeProfile();
+    // profileManager.removeProfile();
 
     return CupertinoApp.router(
       theme: ThemeClass.lightThemeData,

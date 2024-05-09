@@ -108,7 +108,7 @@ final class AppProviderImp implements AppProvider {
     if (response.statusCode == 200) {
       final dto = GetScheduleSimplifyDTO.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
 
-      return dto.asDomain();
+      return dto != null ? dto.asDomain() : [];
     } else {
       throw Exception('Failed to load schedule');
     }

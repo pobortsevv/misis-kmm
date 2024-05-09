@@ -31,26 +31,28 @@ class GetSchedule {
 */
 
 class GetScheduleSimplifyDTO {
-  final String status; // Сделать проверку на уровне провайдера. Если found => asDomain()
   final ScheduleHeaderDTO header;
   final Map<String, dynamic> rawLessons;
 
   const GetScheduleSimplifyDTO({
-    required this.status,
     required this.header,
     required this.rawLessons
   });
 
-  factory GetScheduleSimplifyDTO.fromJson(Map<String, dynamic> json) {
+  static GetScheduleSimplifyDTO? fromJson(Map<String, dynamic> json) {
     final getSchedule = GetSchedule.fromJson(json);
+    final status = getSchedule.object['status'];
+
+    if (status == "NOT_FOUND") {
+      return null;
+    }
     
     try {
-      final String status = getSchedule.object['status']; // подумать когда проверять
       final header = ScheduleHeaderDTO.fromJson(getSchedule.object['schedule_header']);
       final Map<String, dynamic> rawLessons = getSchedule.object['schedule'];
       rawLessons.remove('order');
 
-      return GetScheduleSimplifyDTO(status: status, header: header, rawLessons: rawLessons);
+       return GetScheduleSimplifyDTO(header: header, rawLessons: rawLessons);
     } catch(error) {
       throw const FormatException('Failed to load get_schedule simplify model.');
     }

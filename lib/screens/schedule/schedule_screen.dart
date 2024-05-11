@@ -3,6 +3,8 @@ import 'package:misis/models/domain/schedule.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
+import 'package:misis/screens/schedule/widgets/day_widget.dart';
+import 'package:misis/screens/schedule/widgets/weeks_widget.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
     
 class ScheduleScreen extends StatefulWidget {
@@ -16,7 +18,8 @@ class ScheduleScreen extends StatefulWidget {
 
 class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserver {
   LoadingState _state = LoadingState.isLoading;
-  Schedule? _schedule;
+
+  ScheduleDataSource _dataSource = ScheduleDataSource.empty();
   String _error = "";
 
   @override
@@ -39,7 +42,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
               const Center(child: MisisProgressIndicator()),
 
             LoadingState.dataLoaded =>
-              Text(_schedule.toString()),
+              WeeksWidget(
+                upperWeek: _dataSource.upperWeekViewModels, 
+                bottomWeek: _dataSource.bottomWeekViewModels
+              ),
               
             LoadingState.loadingError =>
               Text(_error),
@@ -57,7 +63,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
     } else if (event is DataLoadedEvent) {
       setState(() {
         _state = LoadingState.dataLoaded;
-        _schedule = event.data;
+        _dataSource = event.dataSource;
+      });
+    } else if (event is DataSourceUpdatingEvent) {
+      setState((){
+        _state = LoadingState.dataLoaded;
+        _dataSource = event.dataSource;
       });
     } else if (event is LoadingErrorEvent) {
       setState(() {

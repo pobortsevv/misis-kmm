@@ -26,4 +26,9 @@ extension DateTimeExtension on DateTime {
   DateTime get previousWeek {
     return subtract(Duration(days: weekday + 1));
   }
+
+  bool get isToday {
+    final now = DateTime.now();
+    return now.day == day && now.month == month && now.year == year;
+  }
 }

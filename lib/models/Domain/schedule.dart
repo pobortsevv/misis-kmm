@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:misis/tools/date_time_extension.dart';
 
 class Schedule {
   final List<Day> upperWeek;
@@ -12,6 +13,7 @@ class Day {
   final String shortName;
   final DateTime date;
   List<Lesson> lessons = List.empty(growable: true);
+  bool get isToday => date.isToday;
 
   Day({
     required this.name,

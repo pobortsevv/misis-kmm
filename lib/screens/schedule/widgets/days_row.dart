@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:misis/screens/schedule/widgets/day_widget.dart';
     
 class DaysRow extends StatelessWidget {

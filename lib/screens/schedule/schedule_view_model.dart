@@ -103,13 +103,6 @@ extension HelperExtension on ScheduleViewModel {
     return (upperWeek, bottomWeek);
   }
 
-  // TODO: Сделать методы обработки нажатия на день
-  // TODO: Сделать метод преобразования Schedule в DataSource
-
-  // List<DayWidgetViewModel> _makeDayWidgetViewModels(List<Day> days) {
-
-  // }
-
   ScheduleDataSource _makeDataSource(Schedule schedule) {
     final upperWeekViewModels = schedule.upperWeek.map((day) {
       return DayWidgetViewModel(

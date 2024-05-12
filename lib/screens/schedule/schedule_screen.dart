@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:misis/models/domain/schedule.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
-import 'package:misis/screens/schedule/widgets/day_widget.dart';
+import 'package:misis/screens/schedule/widgets/time_range_widget.dart';
 import 'package:misis/screens/schedule/widgets/weeks_widget.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
     
@@ -42,9 +41,18 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
               const Center(child: MisisProgressIndicator()),
 
             LoadingState.dataLoaded =>
-              WeeksWidget(
-                upperWeek: _dataSource.upperWeekViewModels, 
-                bottomWeek: _dataSource.bottomWeekViewModels
+              Column(
+                children: [
+                  WeeksWidget(
+                    upperWeek: _dataSource.upperWeekViewModels, 
+                    bottomWeek: _dataSource.bottomWeekViewModels
+                  ),
+                  Column(
+                    children: _dataSource.lessons.map((e) {
+                      return TimeRangeWidget(timeRange: e.time, isCurrent: e.isCurrent);
+                    }).toList()
+                  )
+                ]
               ),
               
             LoadingState.loadingError =>

@@ -46,6 +46,10 @@ cupertino_icons
 2.19
 file:///Users/sabra/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6/
 file:///Users/sabra/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6/lib/
+equatable
+2.12
+file:///Users/sabra/.pub-cache/hosted/pub.dev/equatable-2.0.5/
+file:///Users/sabra/.pub-cache/hosted/pub.dev/equatable-2.0.5/lib/
 fake_async
 2.12
 file:///Users/sabra/.pub-cache/hosted/pub.dev/fake_async-1.3.1/
@@ -86,6 +90,14 @@ image
 2.15
 file:///Users/sabra/.pub-cache/hosted/pub.dev/image-4.1.7/
 file:///Users/sabra/.pub-cache/hosted/pub.dev/image-4.1.7/lib/
+in_date_range
+2.12
+file:///Users/sabra/.pub-cache/hosted/pub.dev/in_date_range-1.1.0/
+file:///Users/sabra/.pub-cache/hosted/pub.dev/in_date_range-1.1.0/lib/
+in_date_utils
+2.16
+file:///Users/sabra/.pub-cache/hosted/pub.dev/in_date_utils-1.2.1/
+file:///Users/sabra/.pub-cache/hosted/pub.dev/in_date_utils-1.2.1/lib/
 intl
 3.0
 file:///Users/sabra/.pub-cache/hosted/pub.dev/intl-0.19.0/

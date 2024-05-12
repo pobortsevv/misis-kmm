@@ -1,3 +1,4 @@
+import 'package:in_date_range/in_date_range.dart';
 import 'package:intl/intl.dart';
 import 'package:misis/tools/date_time_extension.dart';
 
@@ -41,6 +42,18 @@ class Lesson {
   final String? teacher;
   final String? group;
   final String? room;
+  final DateTime date;
+
+  bool get isCurrent {
+    final now = DateTime.now();
+
+    final range = DateRange(
+      time.makeStartDateTime(date),
+      time.makeEndDateTime(date)
+    );
+
+    return range.contains(now);
+  }
 
   Lesson({
     required this.id,
@@ -49,10 +62,11 @@ class Lesson {
     required this.type,
     required this.teacher,
     required this.group,
-    required this.room
+    required this.room,
+    required this.date
   });
 
-  static Lesson? fromJson(Map<String, dynamic> header, Map<String, dynamic> json) {
+  static Lesson? fromJson(Map<String, dynamic> header, Map<String, dynamic> json, DateTime date) {
     try {
       final time = LessonTime(start: header['start_lesson'], end: header['end_lesson']);
 
@@ -76,7 +90,8 @@ class Lesson {
               type: type,
               teacher: teacher,
               group: group,
-              room: room
+              room: room,
+              date: date
             );
           }
         }
@@ -123,4 +138,18 @@ class LessonTime {
   final String end;
 
   LessonTime({required this.start, required this.end});
+
+  DateTime makeStartDateTime(DateTime day) {
+    final timeParts = DateFormat("HH:mm").parse(start);
+
+    return DateTime(day.year, day.month, day.day, timeParts.hour, timeParts.minute)
+      .subtract(const Duration(seconds: 1));
+  }
+
+  DateTime makeEndDateTime(DateTime day) {
+    final timeParts = DateFormat("HH:mm").parse(end);
+
+    return DateTime(day.year, day.month, day.day, timeParts.hour, timeParts.minute)
+      .add(const Duration(seconds: 1));
+  }
 }

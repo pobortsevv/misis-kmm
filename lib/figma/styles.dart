@@ -169,4 +169,14 @@ class FigmaTextStyles {
     letterSpacing: 4,
   );
 
+  TextStyle get secondaryTitle => TextStyle(
+    fontSize: 20,
+    color: FigmaColors.texticonsPrimaruLight.withOpacity(0.3),
+    decoration: TextDecoration.none,
+    fontFamily: 'Roboto-Bold',
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w700,
+    height: 27 / 20,
+    letterSpacing: 0,
+  );
 }

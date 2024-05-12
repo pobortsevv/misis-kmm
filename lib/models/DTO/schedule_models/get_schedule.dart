@@ -68,8 +68,12 @@ class GetScheduleSimplifyDTO {
           value.remove('header');
 
           value.forEach((key, value) {
+
             if (value is Map<String, dynamic>) {
-              final lesson = Lesson.fromJson(header, value);
+              final day = days[key];
+              if (day == null) throw const FormatException("Day not found");
+
+              final lesson = Lesson.fromJson(header, value, day.date);
 
               if (lesson != null) days[key]?.lessons.add(lesson);
             }

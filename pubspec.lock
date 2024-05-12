@@ -97,6 +97,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -192,6 +200,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.7"
+  in_date_range:
+    dependency: "direct main"
+    description:
+      name: in_date_range
+      sha256: d35d6097cb1f26efaff8b1fc25c32247f69ecc3d75e3fad6077dd7aaaf8b1cd1
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  in_date_utils:
+    dependency: transitive
+    description:
+      name: in_date_utils
+      sha256: "1dc06a97f44b6f66f8924e3a52ddd1f02b4c7ba574b639e25e59095cc1d1406f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   intl:
     dependency: "direct main"
     description:

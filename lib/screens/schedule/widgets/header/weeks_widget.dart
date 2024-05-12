@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:misis/screens/schedule/widgets/day_widget.dart';
-import 'package:misis/screens/schedule/widgets/days_row.dart';
+import 'package:misis/screens/schedule/widgets/header/day_widget.dart';
+import 'package:misis/screens/schedule/widgets/header/days_row.dart';
     
 class WeeksWidget extends StatelessWidget {
   final List<DayWidgetViewModel> upperWeek;

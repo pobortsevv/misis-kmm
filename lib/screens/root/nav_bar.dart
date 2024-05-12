@@ -5,8 +5,8 @@ import 'package:misis/figma/icons.dart';
 class ScaffoldNavBar extends StatelessWidget {
   const ScaffoldNavBar({
     required this.navigationShell,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final StatefulNavigationShell navigationShell;
 

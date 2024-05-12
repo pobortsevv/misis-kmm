@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:misis/screens/schedule/widgets/day_widget.dart';
+import 'package:misis/screens/schedule/widgets/header/day_widget.dart';
     
 class DaysRow extends StatelessWidget {
   final List<DayWidgetViewModel> days;

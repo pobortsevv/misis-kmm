@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:misis/figma/icons.dart';
 import 'package:misis/figma/styles.dart';
-import 'package:misis/models/domain/schedule.dart';
+import 'package:misis/models/domain/lesson.dart';
     
 class TimeRangeWidget extends StatelessWidget {
   final LessonTime timeRange;

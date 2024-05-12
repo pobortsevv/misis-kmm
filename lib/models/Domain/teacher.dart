@@ -10,6 +10,7 @@ import 'package:misis/screens/login/list_screen/view_models/list_view_model.dart
 
 /// Доменная модель преподавателя
 final class Teacher implements IdentifiableModel {
+  @override
   final int id;
   final String firstName;
   final String? midName;

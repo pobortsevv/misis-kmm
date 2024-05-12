@@ -17,6 +17,7 @@
 ///         License:   SIL (http://scripts.sil.org/OFL)
 ///         Homepage:  http://www.mfglabs.com/
 ///
+library;
 import 'package:flutter/widgets.dart';
 
 class FigmaIcons {

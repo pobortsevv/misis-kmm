@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
-import 'package:misis/screens/schedule/widgets/time_range_widget.dart';
-import 'package:misis/screens/schedule/widgets/weeks_widget.dart';
+import 'package:misis/screens/schedule/widgets/lesson/lesson_widget.dart';
+import 'package:misis/screens/schedule/widgets/lesson/time_range_widget.dart';
+import 'package:misis/screens/schedule/widgets/header/weeks_widget.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
     
 class ScheduleScreen extends StatefulWidget {
@@ -49,7 +50,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
                   ),
                   Column(
                     children: _dataSource.lessons.map((e) {
-                      return TimeRangeWidget(timeRange: e.time, isCurrent: e.isCurrent);
+                      return Column(
+                        children: [
+                          TimeRangeWidget(timeRange: e.timeRange, isCurrent: e.isCurrent),
+                          LessonWidget(viewModel: e)
+                        ]
+                      );
                     }).toList()
                   )
                 ]

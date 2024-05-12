@@ -1,3 +1,4 @@
+import 'package:misis/models/domain/lesson.dart';
 import 'package:misis/models/domain/schedule.dart';
 
 /// Родительский слой модели. Маппинг при ответе вида:

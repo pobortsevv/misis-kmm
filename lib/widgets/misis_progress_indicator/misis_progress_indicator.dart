@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:misis/widgets/misis_progress_indicator/painter.dart';
 
 /// Реализация взята https://github.com/morzabzrgzd/Flutter-Loading-Animation/tree/master

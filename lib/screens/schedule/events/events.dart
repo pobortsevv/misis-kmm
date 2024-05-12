@@ -1,6 +1,7 @@
-import 'package:misis/models/domain/schedule.dart';
+import 'package:misis/models/domain/lesson.dart';
 import 'package:misis/mvvm/observer.dart';
-import 'package:misis/screens/schedule/widgets/day_widget.dart';
+import 'package:misis/screens/schedule/widgets/header/day_widget.dart';
+import 'package:misis/screens/schedule/widgets/lesson/lesson_widget.dart';
 
 enum LoadingState {
   isLoading,
@@ -34,7 +35,7 @@ class LoadingErrorEvent extends ViewEvent {
 class ScheduleDataSource {
   final List<DayWidgetViewModel> upperWeekViewModels;
   final List<DayWidgetViewModel> bottomWeekViewModels;
-  final List<Lesson> lessons;
+  final List<LessonWidgetViewModel> lessons;
 
   ScheduleDataSource({
     required this.upperWeekViewModels,

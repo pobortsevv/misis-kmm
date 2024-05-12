@@ -99,7 +99,7 @@ final class AppProviderImp implements AppProvider {
     }
     final week = await _fetchWeek(body);
 
-    return week.isEmpty ? _makeEmptyWeek(date) : week;
+    return week.isEmpty ? _makeEmptyWeek(date) : week + [_saturday(date)];
   }
 
   Future<List<Day>> _fetchWeek(String body) async {
@@ -125,6 +125,10 @@ final class AppProviderImp implements AppProvider {
     "Content-type": "application/json",
   };
 
+  static Day _saturday(DateTime date) {
+    return Day(name: "воскресенье ", shortName: "Вс", date: date.lastDayOfTheWeek);
+  }
+
   static List<Day> _makeEmptyWeek(DateTime date) {
     final firstDayOfTheWeek = date.firstDayOfTheWeek;
 
@@ -135,6 +139,7 @@ final class AppProviderImp implements AppProvider {
       Day(name: "четверг ", shortName: "Чт", date: firstDayOfTheWeek.add(const Duration(days: 3))),
       Day(name: "пятница ", shortName: "Пт", date: firstDayOfTheWeek.add(const Duration(days: 4))),
       Day(name: "суббота ", shortName: "Сб", date: firstDayOfTheWeek.add(const Duration(days: 5))),
+      _saturday(date)
     ];
   }
 }

@@ -12,6 +12,7 @@ void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // await profileManager.removeProfile();
 
   runApp(MyApp(profileManager: profileManager, provider: provider));
 }
@@ -29,7 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    // profileManager.removeProfile();
 
     return CupertinoApp.router(
       theme: ThemeClass.lightThemeData,

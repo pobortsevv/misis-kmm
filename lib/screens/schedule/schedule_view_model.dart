@@ -38,7 +38,7 @@ final class ScheduleViewModel extends EventViewModel {
       _profile = value;
       _loadData(value);
     }).catchError((onError) {
-        notify(LoadingErrorEvent(error: onError)); // TODO: Сделать обработку UB
+        notify(LoadingErrorEvent(error: onError.toString())); // TODO: Сделать обработку UB
     });
   }
 
@@ -54,7 +54,7 @@ extension DataLoadableExtension on ScheduleViewModel {
         _dataSource = _makeDataSource(value);
         notify(DataLoadedEvent(dataSource: _dataSource));
       }).catchError((onError) {
-        notify(LoadingErrorEvent(error: onError));
+        notify(LoadingErrorEvent(error: onError.toString()));
       });
   }
 
@@ -86,7 +86,7 @@ extension DataLoadableExtension on ScheduleViewModel {
   Future<Profile> _getProfile() async {
     final profile = await _profileManager.getProfile();
 
-    return profile ?? (throw Exception('Failed to get Profile'));
+    return profile!;
   }
 }
 

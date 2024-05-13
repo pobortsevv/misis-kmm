@@ -28,7 +28,7 @@ class Day {
         'text': String text,
         'short_text': String shortText,
         'date': String date,
-      } => Day(name: text, shortName: shortText, date: DateFormat('MM.dd.yy').parse(date)),
+      } => Day(name: text, shortName: shortText, date: DateFormat('dd.MM.yy').parse(date)),
       _ => throw const FormatException('Failed to load a day.')
     };
   }

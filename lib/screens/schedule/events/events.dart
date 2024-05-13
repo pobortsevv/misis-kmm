@@ -1,4 +1,3 @@
-import 'package:misis/models/domain/lesson.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/schedule/widgets/header/day_widget.dart';
 import 'package:misis/screens/schedule/widgets/lesson/lesson_widget.dart';

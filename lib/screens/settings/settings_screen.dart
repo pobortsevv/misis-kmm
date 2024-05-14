@@ -3,6 +3,7 @@ import 'package:misis/models/domain/profile.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/settings/events/events.dart';
 import 'package:misis/screens/settings/settings_view_model.dart';
+import 'package:misis/screens/settings/widgets/profile_header_widget.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
     
 class SettingsScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> implements EventObserver {
   LoadingState _state = LoadingState.isLoading;
-  Profile? _profile;
+  SettingsDataSource _dataSource = SettingsDataSource.empty();
   String _error = "";
 
   @override
@@ -44,7 +45,18 @@ class _SettingsScreenState extends State<SettingsScreen> implements EventObserve
               const Center(child: MisisProgressIndicator()),
 
             LoadingState.dataLoaded =>
-              Text(_profile!.user.value.name),
+            Center(
+              child: Column(
+                children: [
+                  ProfileHeaderWidget(
+                    profileName: _dataSource.profileName,
+                    profileStatus: _dataSource.profileStatus,
+                    filialName: _dataSource.filialName,
+                  ),
+                  CupertinoButton(child: const Text("Выйти"), onPressed: () => widget.vm.logout(context))
+                ],
+              ),
+            ),
 
             LoadingState.loadingError =>
               Text(_error),
@@ -62,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> implements EventObserve
     } else if (event is DataLoadedEvent) {
       setState(() {
         _state = LoadingState.dataLoaded;
-        _profile = event.profile;
+        _dataSource = event.dataSource;
       });
     } else if (event is LoadingErrorEvent) {
       setState(() {

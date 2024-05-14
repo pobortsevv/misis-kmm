@@ -18,7 +18,8 @@ class DoubleTitleWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title, style: const FigmaTextStyles().boldBody,
+          title,
+          style: const FigmaTextStyles().boldBody,
           maxLines: 2,
           textScaler: const TextScaler.linear(0.95),
           textAlign: TextAlign.left

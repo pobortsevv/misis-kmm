@@ -104,12 +104,13 @@ class FigmaTextStyles {
 
   TextStyle get caption => const TextStyle(
     fontSize: 12,
+    color: FigmaColors.texticonsSecondaryLight,
     decoration: TextDecoration.none,
     fontFamily: 'Roboto-Medium',
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.w500,
     height: 14 / 12,
-    letterSpacing: 4,
+    letterSpacing: 0,
   );
 
   // DARK --

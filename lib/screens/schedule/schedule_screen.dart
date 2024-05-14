@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:misis/figma/styles.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
 import 'package:misis/screens/schedule/widgets/lesson/lesson_widget.dart';
 import 'package:misis/screens/schedule/widgets/lesson/time_range_widget.dart';
 import 'package:misis/screens/schedule/widgets/header/weeks_widget.dart';
+import 'package:misis/screens/schedule/widgets/loaded_schedule_widget.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
     
 class ScheduleScreen extends StatefulWidget {
@@ -33,8 +35,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        backgroundColor: FigmaColors.backgroundAccentLight,
         middle: Text(widget.vm.currentWeekType, style: CupertinoTheme.of(context).textTheme.textStyle),
-        border: Border(bottom: BorderSide(color: CupertinoTheme.of(context).barBackgroundColor))
+        border: const Border(bottom: BorderSide(color: FigmaColors.backgroundAccentLight))
       ),
       child: SafeArea(child:
           switch (_state) {
@@ -42,25 +45,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
               const Center(child: MisisProgressIndicator()),
 
             LoadingState.dataLoaded =>
-              Column(
-                children: [
-                  WeeksWidget(
-                    upperWeek: _dataSource.upperWeekViewModels, 
-                    bottomWeek: _dataSource.bottomWeekViewModels
-                  ),
-                  Column(
-                    children: _dataSource.lessons.map((e) {
-                      return Column(
-                        children: [
-                          TimeRangeWidget(timeRange: e.timeRange, isCurrent: e.isCurrent),
-                          LessonWidget(viewModel: e)
-                        ]
-                      );
-                    }).toList()
-                  )
-                ]
+              LoadedScheduleWidget(
+                upperWeekViewModels: _dataSource.upperWeekViewModels, 
+                bottomWeekViewModels: _dataSource.bottomWeekViewModels,
+                lessons: _dataSource.lessons
               ),
-              
+
             LoadingState.loadingError =>
               Text(_error),
           }

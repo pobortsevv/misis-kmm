@@ -17,8 +17,17 @@ class DoubleTitleWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: const FigmaTextStyles().title),
-        Text(subtitle, style: const FigmaTextStyles().footnote)
+        Text(
+          title, style: const FigmaTextStyles().boldBody,
+          maxLines: 2,
+          textScaler: const TextScaler.linear(0.95),
+          textAlign: TextAlign.left
+        ),
+        Text(
+          subtitle,
+          style: const FigmaTextStyles().footnote,
+          textAlign: TextAlign.left
+        )
       ],
     );
   }

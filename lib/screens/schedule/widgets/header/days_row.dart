@@ -9,6 +9,7 @@ class DaysRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: days.map((model) => DayWidget(vm: model)).toList(),
     ); 
   }

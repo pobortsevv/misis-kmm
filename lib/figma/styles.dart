@@ -20,7 +20,7 @@ class ThemeClass {
   static CupertinoThemeData lightThemeData = CupertinoThemeData(
     brightness: Brightness.light,
     textTheme: ThemeClass.lightThemeTextData,
-    primaryColor: FigmaColors.texticonsPrimaruLight,
+    primaryColor: FigmaColors.primary,
     scaffoldBackgroundColor: FigmaColors.background1levelLight,
     barBackgroundColor: FigmaColors.background1levelLight,
     applyThemeToAll: true
@@ -169,6 +169,8 @@ class FigmaTextStyles {
     letterSpacing: 4,
   );
 
+  // Alternative --
+
   TextStyle get secondaryTitle => TextStyle(
     fontSize: 20,
     color: FigmaColors.texticonsPrimaruLight.withOpacity(0.3),
@@ -177,6 +179,17 @@ class FigmaTextStyles {
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.w700,
     height: 27 / 20,
+    letterSpacing: 0,
+  );
+
+  TextStyle get boldBody => const TextStyle(
+    fontSize: 16,
+    color: FigmaColors.texticonsPrimaruLight,
+    decoration: TextDecoration.none,
+    fontFamily: 'Roboto-Bold',
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w700,
+    height: 21.6 / 16,
     letterSpacing: 0,
   );
 }

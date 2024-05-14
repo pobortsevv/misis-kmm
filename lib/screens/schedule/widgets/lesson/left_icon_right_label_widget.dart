@@ -17,7 +17,7 @@ class LeftIconRightLabelWidget extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.only(right: 6),
-          child: Icon(icon),
+          child: Icon(icon, color: FigmaColors.texticonsSecondaryLight),
         ),
         Text(text, style: const FigmaTextStyles().body)
       ]

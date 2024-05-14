@@ -57,7 +57,7 @@ final class AppRouter {
                     builder: (BuildContext context, GoRouterState state) {
                       _clearContextIfNeeded(context);
                       
-                      return const EmptyScreen(title: "Settings");
+                      return const EmptyScreen(title: "Настройки");
                     },
                     // routes: <RouteBase>[],
                     redirect: (context, state) async {

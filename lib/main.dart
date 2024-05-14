@@ -12,7 +12,7 @@ void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  // await profileManager.removeProfile();
+  await profileManager.removeProfile();
 
   runApp(MyApp(profileManager: profileManager, provider: provider));
 }

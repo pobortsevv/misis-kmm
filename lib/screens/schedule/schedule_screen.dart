@@ -3,9 +3,6 @@ import 'package:misis/figma/styles.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
-import 'package:misis/screens/schedule/widgets/lesson/lesson_widget.dart';
-import 'package:misis/screens/schedule/widgets/lesson/time_range_widget.dart';
-import 'package:misis/screens/schedule/widgets/header/weeks_widget.dart';
 import 'package:misis/screens/schedule/widgets/loaded_schedule_widget.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
     

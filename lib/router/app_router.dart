@@ -3,10 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:misis/profile_manager/profile_manager.dart';
 import 'package:misis/provider/provider.dart';
 import 'package:misis/router/login_router.dart';
-import 'package:misis/screens/named_screen.dart';
 import 'package:misis/screens/root/nav_bar.dart';
 import 'package:misis/screens/schedule/schedule_screen.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
+import 'package:misis/screens/settings/settings_screen.dart';
+import 'package:misis/screens/settings/settings_view_model.dart';
 
 final class AppRouter {
   final ProfileManager _profileManager;
@@ -38,7 +39,7 @@ final class AppRouter {
                     path: '/schedule',
                     builder: (BuildContext context, GoRouterState state) {
                       _clearContextIfNeeded(context);
-                      scheduleViewModel = ScheduleViewModel(provider:_provider, profileManager: _profileManager);
+                      final scheduleViewModel = ScheduleViewModel(provider:_provider, profileManager: _profileManager);
 
                       return ScheduleScreen(vm: scheduleViewModel);
                     },
@@ -56,8 +57,9 @@ final class AppRouter {
                     path: '/settings',
                     builder: (BuildContext context, GoRouterState state) {
                       _clearContextIfNeeded(context);
+                      final settingsViewModel = SettingsViewModel(profileManager: _profileManager);
                       
-                      return const EmptyScreen(title: "Настройки");
+                      return SettingsScreen(vm: settingsViewModel);
                     },
                     // routes: <RouteBase>[],
                     redirect: (context, state) async {

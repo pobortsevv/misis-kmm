@@ -17,7 +17,6 @@ final class ScheduleViewModel extends EventViewModel {
   final AppProvider _provider;
   final ProfileManager _profileManager;
   late final Profile _profile;
-  late final Schedule _schedule;
   late ScheduleDataSource _dataSource;
 
   String? _currentWeekType;
@@ -50,7 +49,6 @@ final class ScheduleViewModel extends EventViewModel {
 extension DataLoadableExtension on ScheduleViewModel {
   void _loadData(Profile profile) {
     _loadSchedule(profile).then((value) {
-        _schedule = value;
         _dataSource = _makeDataSource(value);
         notify(DataLoadedEvent(dataSource: _dataSource));
       }).catchError((onError) {

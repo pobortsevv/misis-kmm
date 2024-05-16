@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:misis/models/domain/profile.dart';
 import 'package:misis/mvvm/observer.dart';
 import 'package:misis/screens/settings/events/events.dart';
 import 'package:misis/screens/settings/settings_view_model.dart';

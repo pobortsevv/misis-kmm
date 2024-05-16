@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:misis/figma/icons.dart';
+import 'package:misis/figma/styles.dart';
 
 class ScaffoldNavBar extends StatelessWidget {
   const ScaffoldNavBar({
@@ -16,6 +17,8 @@ class ScaffoldNavBar extends StatelessWidget {
       key:  UniqueKey(),
       tabBuilder: (context, index) => navigationShell,
       tabBar: CupertinoTabBar(
+        border: const Border(bottom: BorderSide(color: FigmaColors.backgroundAccentLight)),
+        height: 65,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(FigmaIcons.calendar), label: 'Расписание'),
           BottomNavigationBarItem(icon: Icon(FigmaIcons.settings), label: 'Настройки'),

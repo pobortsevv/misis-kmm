@@ -39,8 +39,8 @@ class _SettingsScreenState extends State<SettingsScreen> implements EventObserve
       LoadingState.isLoading => const Center(child: MisisProgressIndicator()),
 
       LoadingState.dataLoaded => CupertinoPageScaffold(
-        navigationBar: const CupertinoNavigationBar(
-          border: Border(bottom: BorderSide(color: FigmaColors.backgroundAccentLight))
+        navigationBar: CupertinoNavigationBar(
+          border: Border(bottom: BorderSide(color: CupertinoTheme.of(context).barBackgroundColor))
         ),
         child: SafeArea(child:
           Center(

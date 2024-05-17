@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:misis/mvvm/observer.dart';
+import 'package:misis/screens/error/error_widget_screen.dart';
 import 'package:misis/screens/login/list_screen/view_models/list_view_model.dart';
 import 'package:misis/widgets/misis_progress_indicator/misis_progress_indicator.dart';
 import 'widgets/searchable_listing_widget.dart';
@@ -18,7 +19,6 @@ final class _ListScreenState extends State<ListScreen> implements EventObserver 
 
   ListLoadingState _state = ListLoadingState.isLoading;
   List<IdentifiableModel> _models = [];
-  String _error = "";
 
   @override
   void initState() {
@@ -43,24 +43,22 @@ final class _ListScreenState extends State<ListScreen> implements EventObserver 
       navigationBar: CupertinoNavigationBar(
         border: Border(bottom: BorderSide(color: CupertinoTheme.of(context).barBackgroundColor))
       ),
-      child:
-        SafeArea(child:
-          switch (_state) {
-            ListLoadingState.isLoading =>
-              const Center(child: MisisProgressIndicator()),
+      child: SafeArea(child:
+        switch (_state) {
+          ListLoadingState.isLoading =>
+            const Center(child: MisisProgressIndicator()),
 
-            ListLoadingState.dataLoaded =>
-              SearchableListingWidget(
-                title: widget.vm.title,
-                controller: textEditingController,
-                models:  _models,
-                onTap: (int id, BuildContext context) => widget.vm.onTap(id, context),
-              ),
+          ListLoadingState.dataLoaded =>
+            SearchableListingWidget(
+              title: widget.vm.title,
+              controller: textEditingController,
+              models:  _models,
+              onTap: (int id, BuildContext context) => widget.vm.onTap(id, context),
+            ),
               
-            ListLoadingState.loadingError =>
-              Text(_error),
-          }
-        )
+          ListLoadingState.loadingError => ErrorWidgetScreen(onRetryButtonTap: widget.vm.loadData),
+        }
+      )
     );
   }
   
@@ -78,7 +76,6 @@ final class _ListScreenState extends State<ListScreen> implements EventObserver 
     } else if (event is LoadingErrorEvent) {
       setState(() {
         _state = ListLoadingState.loadingError;
-        _error = event.error;
       });
     } else if (event is SearchEvent) {
       setState(() {

@@ -20,7 +20,7 @@ final class FilialsViewModel extends ListViewModel<Filial> {
       _allFilials = value;
       notify(ListDataLoadedEvent(data: value));
     }).catchError((onError) {
-      notify(LoadingErrorEvent(error: onError));
+      notify(LoadingErrorEvent(error: onError.toString()));
     });
   }
 

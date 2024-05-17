@@ -37,7 +37,7 @@ final class ScheduleViewModel extends EventViewModel {
       _profile = value;
       _loadData(value);
     }).catchError((onError) {
-        notify(LoadingErrorEvent(error: onError.toString())); // TODO: Сделать обработку UB
+        notify(LoadingErrorEvent(error: onError.toString()));
     });
   }
 

@@ -30,7 +30,7 @@ final class TeachersViewModel extends ListViewModel<Teacher> {
       _allTeachers = value;
       notify(ListDataLoadedEvent(data: value));
     }).catchError((onError) {
-      notify(LoadingErrorEvent(error: onError));
+      notify(LoadingErrorEvent(error: onError.toString()));
     });
   }
 

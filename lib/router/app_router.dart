@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:misis/profile_manager/profile_manager.dart';
 import 'package:misis/provider/provider.dart';
 import 'package:misis/router/login_router.dart';
+import 'package:misis/screens/error/error_widget_screen.dart';
 import 'package:misis/screens/root/nav_bar.dart';
 import 'package:misis/screens/schedule/schedule_screen.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
@@ -71,7 +72,9 @@ final class AppRouter {
             ]
           ),
         ],
-      // errorBuilder: (context, state) {}, // TODO: Сделать для того, чтобы обрабатывать ошибки роутера
+      errorBuilder: (context, state) {
+        return ErrorWidgetScreen(onRetryButtonTap: () => context.goNamed('schedule'));
+      },
     );
   }
 

@@ -30,7 +30,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
 
   @override
   Widget build(BuildContext context) {
-    final stateWidget = switch (_state) {
+    return switch (_state) {
       LoadingState.isLoading => const Center(child: MisisProgressIndicator()),
 
       LoadingState.dataLoaded => CupertinoPageScaffold(
@@ -50,8 +50,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
 
       LoadingState.loadingError => ErrorWidgetScreen(onRetryButtonTap: widget.vm.loadData)
     };
-
-    return stateWidget;
   }
   
   @override

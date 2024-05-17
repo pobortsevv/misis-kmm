@@ -87,7 +87,6 @@ final class AppProviderImp implements AppProvider {
     }
   }
 
-  // TODO: сделать запрос на две недели - верхнюю и нижнюю неделю.
   @override
   Future<List<Day>> fetchWeekSchedule(int id, Status status, DateTime date) async {
     final startDate = _dateFormatter.format(date.firstDayOfTheWeek);

@@ -30,7 +30,7 @@ final class GroupsViewModel extends ListViewModel<Group> {
       _allGroups = value;
       notify(ListDataLoadedEvent(data: value));
     }).catchError((onError) {
-      notify(LoadingErrorEvent(error: onError));
+      notify(LoadingErrorEvent(error: onError.toString()));
     });
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:misis/figma/styles.dart';
 import 'package:misis/mvvm/observer.dart';
+import 'package:misis/screens/error/error_widget_screen.dart';
 import 'package:misis/screens/schedule/events/events.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
 import 'package:misis/screens/schedule/widgets/loaded_schedule_widget.dart';
@@ -19,7 +20,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
   LoadingState _state = LoadingState.isLoading;
 
   ScheduleDataSource _dataSource = ScheduleDataSource.empty();
-  String _error = "";
 
   @override
   void initState() {
@@ -30,29 +30,28 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        backgroundColor: FigmaColors.backgroundAccentLight,
-        middle: Text(widget.vm.currentWeekType, style: CupertinoTheme.of(context).textTheme.textStyle),
-        border: const Border(bottom: BorderSide(color: FigmaColors.backgroundAccentLight))
-      ),
-      child: SafeArea(child:
-          switch (_state) {
-            LoadingState.isLoading =>
-              const Center(child: MisisProgressIndicator()),
+    final stateWidget = switch (_state) {
+      LoadingState.isLoading => const Center(child: MisisProgressIndicator()),
 
-            LoadingState.dataLoaded =>
-              LoadedScheduleWidget(
-                upperWeekViewModels: _dataSource.upperWeekViewModels, 
-                bottomWeekViewModels: _dataSource.bottomWeekViewModels,
-                lessons: _dataSource.lessons
-              ),
-
-            LoadingState.loadingError =>
-              Text(_error),
-          }
+      LoadingState.dataLoaded => CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          backgroundColor: FigmaColors.backgroundAccentLight,
+          middle: Text(widget.vm.currentWeekType, style: CupertinoTheme.of(context).textTheme.textStyle),
+          border: const Border(bottom: BorderSide(color: FigmaColors.backgroundAccentLight))
+        ),
+        child: SafeArea(child:
+          LoadedScheduleWidget(
+            upperWeekViewModels: _dataSource.upperWeekViewModels, 
+            bottomWeekViewModels: _dataSource.bottomWeekViewModels,
+            lessons: _dataSource.lessons
+          )
         )
-    );
+      ),
+
+      LoadingState.loadingError => ErrorWidgetScreen(onRetryButtonTap: widget.vm.loadData)
+    };
+
+    return stateWidget;
   }
   
   @override
@@ -74,7 +73,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> implements EventObserve
     } else if (event is LoadingErrorEvent) {
       setState(() {
         _state = LoadingState.loadingError;
-        _error = event.error;
       });
     }
   }

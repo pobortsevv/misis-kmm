@@ -193,4 +193,15 @@ class FigmaTextStyles {
     height: 21.6 / 16,
     letterSpacing: 0,
   );
+
+  TextStyle get secondaryBody => TextStyle(
+    fontSize: 16,
+    color: FigmaColors.texticonsSecondaryLight.withOpacity(0.5),
+    decoration: TextDecoration.none,
+    fontFamily: 'Roboto-Regular',
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w400,
+    height: 21.6 / 16,
+    letterSpacing: 0,
+  );
 }

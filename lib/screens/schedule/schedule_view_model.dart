@@ -16,7 +16,7 @@ final class ScheduleViewModel extends EventViewModel {
 
   final AppProvider _provider;
   final ProfileManager _profileManager;
-  late final Profile _profile;
+  late Profile _profile;
   late ScheduleDataSource _dataSource;
 
   String? _currentWeekType;
@@ -73,8 +73,9 @@ extension DataLoadableExtension on ScheduleViewModel {
     final results = await Future.wait([
       _loadWeek(id, status, weeks.$1),
       _loadWeek(id, status, weeks.$2)
-    ]);
-    // TODO: Сделать проверку на ошибку
+    ]).catchError((onError) {
+      throw Exception("Loading error");
+    });
 
     _updateCurrentWeekType(isEven);
 

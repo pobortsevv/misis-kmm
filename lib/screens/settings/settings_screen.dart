@@ -52,6 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> implements EventObserve
                     profileStatus: _dataSource.profileStatus,
                     filialName: _dataSource.filialName,
                   ),
+
                   CupertinoButton(child: const Text("Выйти"), onPressed: () => widget.vm.logout(context))
                 ],
               ),

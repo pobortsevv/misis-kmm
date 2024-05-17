@@ -28,7 +28,7 @@ class LoadedScheduleWidget extends StatelessWidget {
             bottomWeek: bottomWeekViewModels
           ),
           Expanded(
-            child: ListView.builder(
+            child: lessons.isNotEmpty ? ListView.builder(
               padding: const EdgeInsets.only(top: 26),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
@@ -37,7 +37,9 @@ class LoadedScheduleWidget extends StatelessWidget {
                 final model = lessons[index];
                 return LessonWidget(viewModel: model);
               },
-            )
+            ) : Center(
+                child: Text("Сегодня пар нет", style: const FigmaTextStyles().secondaryBody)
+              )
           )
         ]
       )

@@ -4,4 +4,6 @@ final class AppUrl {
   static var baseURLPath = '/method/schedule.json';
 
   static var requestURL = baseURL + baseURLPath;
+
+  static var rateUsForm = 'https://forms.gle/961q2U31DmkJ2P9b9';
 }

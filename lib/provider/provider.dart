@@ -51,6 +51,7 @@ final class AppProviderImp implements AppProvider {
     final body = TaskType.groups.getEncodedBodyByFilial(filialId);
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // TODO: убрать кэширование (либо реализовать по-другому).
     final cachedGroups = prefs.getString('groups_$filialId');
     if (cachedGroups != null) {
       final getGroups = GetGroups.fromJson(jsonDecode(cachedGroups) as Map<String, dynamic>);

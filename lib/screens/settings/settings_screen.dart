@@ -55,20 +55,20 @@ class _SettingsScreenState extends State<SettingsScreen> implements EventObserve
                     profileStatus: _dataSource.profileStatus,
                     filialName: _dataSource.filialName,
                   ),
-                  CupertinoListItemWidget(
-                    leading: const Icon(FigmaIcons.paint, color: FigmaColors.texticonsPrimaruLight),
-                    title: const Text("Тема"),
-                    onTap: () => {}
-                  ),
+                  // CupertinoListItemWidget(
+                  //   leading: const Icon(FigmaIcons.paint, color: FigmaColors.texticonsPrimaruLight),
+                  //   title: const Text("Тема"),
+                  //   onTap: () => widget.vm.routeToTheme(context)
+                  // ),
                   CupertinoListItemWidget(
                     leading: const Icon(FigmaIcons.star, color: FigmaColors.texticonsPrimaruLight),
                     title: const Text("Оцените нас"),
-                    onTap: () => { widget.vm.openRateUsForm() }
+                    onTap: () => widget.vm.openRateUsForm()
                   ),
                   CupertinoListItemWidget(
                     leading: const Icon(FigmaIcons.link, color: FigmaColors.texticonsPrimaruLight),
                     title: const Text("Ссылки"),
-                    onTap: () => {}
+                    onTap: () => widget.vm.routeToLinks(context)
                   ),
                   CupertinoListItemWidget(
                     leading: const Icon(CupertinoIcons.square_arrow_left, color: CupertinoColors.systemRed),

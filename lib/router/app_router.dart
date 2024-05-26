@@ -7,6 +7,7 @@ import 'package:misis/screens/error/error_widget_screen.dart';
 import 'package:misis/screens/root/nav_bar.dart';
 import 'package:misis/screens/schedule/schedule_screen.dart';
 import 'package:misis/screens/schedule/schedule_view_model.dart';
+import 'package:misis/screens/settings/links_screen/links_screen.dart';
 import 'package:misis/screens/settings/settings_screen.dart';
 import 'package:misis/screens/settings/settings_view_model.dart';
 
@@ -44,7 +45,6 @@ final class AppRouter {
 
                       return ScheduleScreen(vm: scheduleViewModel);
                     },
-                    // routes: <RouteBase>[],
                     redirect: (context, state) async {
                       return await _profileManager.isLoggedIn() ? '/schedule' : '/login';
                     },
@@ -57,14 +57,36 @@ final class AppRouter {
                     name: 'settings',
                     path: '/settings',
                     builder: (BuildContext context, GoRouterState state) {
-                      _clearContextIfNeeded(context);
+                      // _clearContextIfNeeded(context);
                       final settingsViewModel = SettingsViewModel(profileManager: _profileManager);
                       
                       return SettingsScreen(vm: settingsViewModel);
                     },
-                    // routes: <RouteBase>[],
+                    routes: [
+                      GoRoute(
+                        name: 'theme',
+                        path: 'theme',
+                        builder: (BuildContext context, GoRouterState state) {
+                          return Container();
+                        }
+                      ),
+                      GoRoute(
+                        name: 'links',
+                        path: 'links',
+                        builder: (BuildContext context, GoRouterState state) {
+                          return const LinksScreen();
+                        }
+                      )
+                    ],
                     redirect: (context, state) async {
-                      return await _profileManager.isLoggedIn() ? '/settings' : '/login';
+                      final isLoggedIn = await _profileManager.isLoggedIn();
+                      final isGoingToLogin = state.uri.toString() == '/login';
+
+                      if (!isLoggedIn && !isGoingToLogin) {
+                        return '/login';
+                      }
+
+                      return null;
                     }
                   ),
                 ],
@@ -79,8 +101,10 @@ final class AppRouter {
   }
 
   void _clearContextIfNeeded(BuildContext context) {
-    while (context.canPop() == true) {
-      context.pop();
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      while (context.canPop() == true) {
+        context.pop();
+      }
+    });
   }
 }

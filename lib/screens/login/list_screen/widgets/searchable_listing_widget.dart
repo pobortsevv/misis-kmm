@@ -45,7 +45,7 @@ class SearchableListingWidget extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: ListView.builder(
+            child: models.isNotEmpty ? ListView.builder(
               itemCount: models.length,
               itemBuilder: (BuildContext context, int index) {
                 final model = models[index];
@@ -54,7 +54,7 @@ class SearchableListingWidget extends StatelessWidget {
                   onTap: () async { onTap(model.id, context); }
                 );
               },
-            )
+            ) : const Text("К сожалению, список пуст :(")
           )
         )
       ],

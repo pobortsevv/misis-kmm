@@ -11,6 +11,10 @@ import 'package:misis/screens/login/list_screen/view_models/list_view_model.dart
 final class GroupsViewModel extends ListViewModel<Group> {
   @override
   final String title = 'Выберите группу';
+  @override
+  String? get loadingDisclaimer => """Список групп, может долго загружаться. 
+  Иногда это занимает до 2-х минут.""";
+
   late List<Group> _allGroups;
 
   final AppProvider _provider;

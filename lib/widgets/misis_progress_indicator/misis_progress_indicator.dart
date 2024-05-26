@@ -4,7 +4,9 @@ import 'package:misis/widgets/misis_progress_indicator/painter.dart';
 
 /// Реализация взята https://github.com/morzabzrgzd/Flutter-Loading-Animation/tree/master
 class MisisProgressIndicator extends StatefulWidget {
-  const MisisProgressIndicator({super.key});
+  final Widget? disclaimer;
+
+  const MisisProgressIndicator({super.key, this.disclaimer});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -124,18 +126,31 @@ class _MisisProgressIndicator extends State<MisisProgressIndicator> with TickerP
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       child: Center(
-        child: SizedBox(
-          height: 100,
-          width: 100,
-          child: CustomPaint(
-            painter: Painter(
-              firstAnimation.value,
-              secondAnimation.value,
-              thirdAnimation.value,
-              fourthAnimation.value,
-              fifthAnimation.value,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: CustomPaint(
+                painter: Painter(
+                  firstAnimation.value,
+                  secondAnimation.value,
+                  thirdAnimation.value,
+                  fourthAnimation.value,
+                  fifthAnimation.value,
+                ),
+              ),
             ),
-          ),
+            if (widget.disclaimer != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: widget.disclaimer,
+                ),
+              )
+          ],
         ),
       ),
     );

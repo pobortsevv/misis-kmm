@@ -19,6 +19,7 @@ import 'package:misis/models/domain/teacher.dart';
 import 'package:misis/provider/app_url.dart';
 import 'package:misis/provider/task.dart';
 import 'package:misis/tools/date_time_extension.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AppProvider {
   Future<List<Filial>> fetchFilials();
@@ -48,10 +49,20 @@ final class AppProviderImp implements AppProvider {
   @override
   Future<List<Group>> fetchGroups(int filialId) async {
     final body = TaskType.groups.getEncodedBodyByFilial(filialId);
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final cachedGroups = prefs.getString('groups_$filialId');
+    if (cachedGroups != null) {
+      final getGroups = GetGroups.fromJson(jsonDecode(cachedGroups) as Map<String, dynamic>);
+
+      return getGroups.asDomainModel(); 
+    }
+
     final response = await _makeResponse(body);
 
     if (response.statusCode == 200) {
       final getGroups = GetGroups.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+      prefs.setString('groups_$filialId', response.body);
 
       return getGroups.asDomainModel();
     } else {

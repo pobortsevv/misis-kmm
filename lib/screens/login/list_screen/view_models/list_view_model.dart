@@ -22,6 +22,7 @@ enum ListLoadingState {
 
 abstract class ListViewModel<Model extends IdentifiableModel> extends EventViewModel {
   String get title;
+  String? get loadingDisclaimer;
 
   void loadData();
   void onTap(int id, BuildContext context);

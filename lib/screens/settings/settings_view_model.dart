@@ -28,6 +28,14 @@ class SettingsViewModel extends EventViewModel {
     await _launchURL(AppUrl.rateUsForm);
   }
 
+  void routeToTheme(BuildContext context) {
+    context.goNamed(SettingsRoute.theme.name);
+  }
+
+  void routeToLinks(BuildContext context) {
+    context.pushNamed(SettingsRoute.links.name);
+  }
+
   void logout(BuildContext context) async {
     await _profileManager.removeProfile();
 
@@ -47,5 +55,7 @@ extension URLLaunchHelper on SettingsViewModel {
 }
 
 enum SettingsRoute {
+  theme,
+  links,
   schedule
 }

@@ -11,6 +11,9 @@ import 'package:misis/screens/login/list_screen/view_models/list_view_model.dart
 final class TeachersViewModel extends ListViewModel<Teacher> {
   @override
   final String title = 'Выберите своё ФИО';
+  @override
+  String? get loadingDisclaimer => null;
+  
   late List<Teacher> _allTeachers;
 
   final AppProvider _provider;

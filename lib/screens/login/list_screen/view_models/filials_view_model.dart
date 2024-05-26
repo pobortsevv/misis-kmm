@@ -7,6 +7,9 @@ import 'package:misis/screens/login/list_screen/view_models/list_view_model.dart
 final class FilialsViewModel extends ListViewModel<Filial> {
   @override
   final String title = 'Выберите филиал';
+  @override
+  String? get loadingDisclaimer => null;
+  
   late List<Filial> _allFilials;
 
   final AppProvider _provider;

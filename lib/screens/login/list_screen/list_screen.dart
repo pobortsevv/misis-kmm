@@ -46,7 +46,11 @@ final class _ListScreenState extends State<ListScreen> implements EventObserver 
       child: SafeArea(child:
         switch (_state) {
           ListLoadingState.isLoading =>
-            const Center(child: MisisProgressIndicator()),
+            Center(child: MisisProgressIndicator(
+              disclaimer: widget.vm.loadingDisclaimer != null 
+                ? Text(widget.vm.loadingDisclaimer!, textAlign: TextAlign.center)
+                : null
+            )),
 
           ListLoadingState.dataLoaded =>
             SearchableListingWidget(
